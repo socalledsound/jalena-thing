@@ -20,16 +20,11 @@ async function setup() {
   frameRate(30)
   video = createCapture(VIDEO, { flipped: true });
   video.hide();
- //bodyPose.detectStart(video, gotPoses);
- //faceMesh.detectStart(video, gotFaces);
-
-
+ faceMesh.detectStart(video, gotFaces);
 }
 
 function draw() {
   background(0);
-  
-  faceMesh.detect(video, gotFaces);
   //use faceMesh to detect
   if(faces.length > 0){
     faceSeen = true
@@ -41,13 +36,10 @@ function draw() {
     videoStream.pause()
     updateCameraOutput()
      image(maskedSketch, 0, 0);
-     //faceSeen = false;
-    // faces = []
   }else{
     videoStream.play()
     maskedStream = createCircularMask(videoStream)
     image(maskedStream,0,0,width,height)
-    //faceMesh.detect(video, gotFaces);
   }
 
   
